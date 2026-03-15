@@ -3,7 +3,9 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());   // IMPORTANT LINE
 
 // Show form
 app.get("/", (req, res) => {
@@ -25,9 +27,9 @@ app.get("/", (req, res) => {
 app.post("/submit", async (req, res) => {
   try {
     const response = await axios.post("http://3.6.88.100:5000/submit", {
-  name: req.body.name,
-  password: req.body.password
-});
+      name: req.body.name,
+      password: req.body.password
+    });
 
     res.send(`<h3>${response.data.message}</h3>`);
   } catch (error) {
