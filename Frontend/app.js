@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 // Send data to Flask backend
 app.post("/submit", async (req, res) => {
   try {
-    const response = await axios.post("http://3.6:88.100:5000/submit", {
+    const response = await axios.post("http://3.6.88.100:5000/submit", {
   name: req.body.name,
   password: req.body.password
 });
