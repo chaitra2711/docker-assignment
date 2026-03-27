@@ -6,6 +6,11 @@ app = Flask(__name__)
 def home():
     return "Backend running successfully"
 
+# ✅ ADD THIS (IMPORTANT)
+@app.route("/health")
+def health():
+    return "OK", 200
+
 @app.route("/submit", methods=["POST"])
 def submit():
     data = request.json
