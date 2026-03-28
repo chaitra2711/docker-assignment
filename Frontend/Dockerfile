@@ -1,11 +1,14 @@
-FROM node:18
+FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+# Copy only package.json
+COPY package.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of your app
 COPY . .
 
 EXPOSE 3000
