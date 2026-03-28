@@ -37,6 +37,6 @@ app.post("/submit", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Frontend running on port 3000");
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Server running");
 });
