@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Backend running successfully"
+       return "Backend V3 SUCCESS"
 
 # ✅ ADD THIS (IMPORTANT)
 @app.route("/health")
