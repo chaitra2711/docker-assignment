@@ -3,9 +3,7 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 
 const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Show form
 app.get("/", (req, res) => {
@@ -23,16 +21,13 @@ app.get("/", (req, res) => {
   `);
 });
 
-// ✅ FIXED POST ROUTE
+// Send data to Flask backend
 app.post("/submit", async (req, res) => {
   try {
-    const response = await axios.post(
-      "http://my-network-498985873.ap-south-1.elb.amazonaws.com/api/submit",
-      {
-        name: req.body.name,
-        password: req.body.password
-      }
-    );
+    const response = await axios.post("http://10.0.2.57:5000/submit", {
+      name: req.body.name,
+      password: req.body.password
+    });
 
     res.send(`<h3>${response.data.message}</h3>`);
   } catch (error) {
@@ -40,6 +35,6 @@ app.post("/submit", async (req, res) => {
   }
 });
 
-app.listen(3000, "0.0.0.0", () => {
-  console.log("Server running");
+app.listen(3000, () => {
+  console.log("Frontend running on port 3000");
 });
