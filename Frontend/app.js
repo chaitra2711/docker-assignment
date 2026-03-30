@@ -3,7 +3,10 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 
 const app = express();
+
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()); // ✅ Required for JSON
 
 // Show form
 app.get("/", (req, res) => {
@@ -24,17 +27,22 @@ app.get("/", (req, res) => {
 // Send data to Flask backend
 app.post("/submit", async (req, res) => {
   try {
-    const response = await axios.post("http://10.0.2.57:5000/submit", {
-      name: req.body.name,
-      password: req.body.password
-    });
+    const response = await axios.post(
+      "http://10.0.2.57:5000/submit", // ✅ Backend private IP
+      {
+        name: req.body.name,
+        password: req.body.password
+      }
+    );
 
     res.send(`<h3>${response.data.message}</h3>`);
   } catch (error) {
+    console.error(error.message); // ✅ Debug log
     res.send("Error connecting to backend");
   }
 });
 
-app.listen(3000, () => {
+// Start server
+app.listen(3000, "0.0.0.0", () => {
   console.log("Frontend running on port 3000");
 });
