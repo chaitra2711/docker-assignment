@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 app.post("/submit", async (req, res) => {
   try {
     const response = await axios.post(
-      "http://10.0.2.57:5000/submit", // ✅ Backend private IP
+      "http://backend:5000/submit", // ✅ Backend private IP
       {
         name: req.body.name,
         password: req.body.password
