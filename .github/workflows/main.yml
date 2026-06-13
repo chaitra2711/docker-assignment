@@ -1,13 +1,12 @@
 name: CI-CD Pipeline
 
 on:
- push: 
-  branches: 
-    -main
+  push:
+    branches:
+      - main
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +17,6 @@ jobs:
 
       - name: Build Frontend Image
         run: docker build -t frontend:latest ./Frontend
-        
+
       - name: Show Images
         run: docker images
-
-
