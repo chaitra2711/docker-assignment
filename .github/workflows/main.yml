@@ -1,0 +1,24 @@
+name: CI-CD Pipeline
+
+on:
+ push: 
+  branches: 
+    -main
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+     
+      steps:
+
+      - users: actions/checkout@v4
+
+      - name: Build Backend Image
+        run: docker build -t backend:latest ./backend
+
+      - name: Build Frontend Image
+        run: docker build -t frontend:latest ./Frontend
+        
+ 
+
+
